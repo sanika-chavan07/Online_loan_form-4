@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Online_loan_form-4';
+
+  title = 'Online_Loan_Application';
+
+  @ViewChild('loanForm')
+  loanForm!: NgForm;
+
+  onloansubmit() {
+
+    if (this.loanForm.invalid) {
+      return this.loanForm.control.markAllAsTouched();
+    }
+
+    console.log(this.loanForm.value);
+
+    this.loanForm.reset();
+  }
 }
